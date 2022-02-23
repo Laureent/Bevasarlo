@@ -21,7 +21,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
-            'password' => bcrypt(['password']),
+            'password' => bcrypt('password'),
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -44,7 +44,7 @@ class AuthController extends Controller
         $user = User::where('email', $fields['email'])->first();
         if(!$user || !Hash::check($fields['password'],$user->password)){
             return response([
-                'message' => "",
+                'message' => "Sikertelen bejelentkezés",
             ],401);
         }
 
