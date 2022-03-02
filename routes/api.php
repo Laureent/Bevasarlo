@@ -17,10 +17,10 @@ use App\Http\Controllers\ShoppingListController;
 */
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
+Route::get('/shoppinglist',[ShoppingListController::class,'index'])->name("shoppinglist.show");
+Route::post('/shoppinglist',[ShoppingListController::class,'store'])->name('addItem');
+Route::delete('/shoppinglist/{id}',[ShoppingListController::class,'destroy'])->name('removeItem');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/shoppinglist',[ShoppingListController::class,'index']);
-    Route::post('/shoppinglist',[ShoppingListController::class,'store'])->name('addItem');
-    Route::delete('/shoppinglist/{id}',[ShoppingListController::class,'destroy'])->name('removeItem');
     Route::post('/logout',[AuthController::class,'logout']);
 });
