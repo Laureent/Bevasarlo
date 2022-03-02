@@ -31,13 +31,29 @@
                     </tr>
                 `;
             }
+            out +=`
+                <tr>
+                    <td><input type="text" placeholder="Termék" id="product"></td>
+                    <td><input type="text" placeholder="Mennyiség" id="amount"></td>
+                    <td>
+                        <button class="btn btn-success" onclick="addItem()">Hozzáadás</button>
+                    </td>
+                </tr>
+            `;
             document.querySelector('#list>tbody').innerHTML = out;
         }
 
         function deleteItem(id) {
-            //fetch('').then(response => response.json()).then(datas => showList(datas));
+            fetch('api/shoppinglist/'+id,{method:'DELETE'}).then(response => response.json()).then(datas => showList(datas));
             fetch('{{route("shoppinglist.show")}}').then(response => response.json()).then(datas => showList(datas));
         }
 
+        function addItem(){
+            const formData = new FormData();
+            formData.append('name',document.getElementById('product').value);
+            formData.append('amount',document.getElementById('amount').value);
+            fetch('{{route("addItem")}}',{method:'POST', body: formData}).then(response => response.json()).then(datas => showList(datas));
+            fetch('{{route("shoppinglist.show")}}').then(response => response.json()).then(datas => showList(datas));
+        }
     </script>
 @endsection
