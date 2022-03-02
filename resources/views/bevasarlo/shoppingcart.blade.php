@@ -8,7 +8,13 @@
             <td></td>
         </thead>
         <tbody>
-
+            <tr>
+                <td><input type="text" placeholder="Termék" id="product"></td>
+                <td><input type="text" placeholder="Mennyiség" id="amount"></td>
+                <td>
+                    <button class="btn btn-success" onclick="addItem()">Hozzáadás</button>
+                </td>
+            </tr>
         </tbody>
     </table>
     </div>
@@ -43,17 +49,17 @@
             document.querySelector('#list>tbody').innerHTML = out;
         }
 
-        function deleteItem(id) {
-            fetch('api/shoppinglist/'+id,{method:'DELETE'}).then(response => response.json()).then(datas => showList(datas));
-            fetch('{{route("shoppinglist.show")}}').then(response => response.json()).then(datas => showList(datas));
+        async function deleteItem(id) {
+            await fetch('api/shoppinglist/'+id,{method:'DELETE'}).then(response => response.json());
+            location.reload();
         }
 
-        function addItem(){
+        async function addItem(){
             const formData = new FormData();
             formData.append('name',document.getElementById('product').value);
             formData.append('amount',document.getElementById('amount').value);
-            fetch('{{route("addItem")}}',{method:'POST', body: formData}).then(response => response.json()).then(datas => showList(datas));
-            fetch('{{route("shoppinglist.show")}}').then(response => response.json()).then(datas => showList(datas));
+            await fetch('{{route("addItem")}}',{method:'POST', body: formData}).then(response => response.json());
+            location.reload();
         }
     </script>
 @endsection
