@@ -1,23 +1,27 @@
 @extends('layouts.main')
 @section('content')
     <div class="row">
-    <table class="table table-striped" id="list">
-        <thead>
-            <td>Termék neve</td>
-            <td>Mennyiség</td>
-            <td></td>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" placeholder="Termék" id="product"></td>
-                <td><input type="text" placeholder="Mennyiség" id="amount"></td>
-                <td>
-                    <button class="btn btn-success" onclick="addItem()">Hozzáadás</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
+        <div class="col">
+            <table class="table table-striped" id="list">
+                <thead>
+                <td>Termék neve</td>
+                <td>Mennyiség</td>
+                <td></td>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" placeholder="Termék" id="product"></td>
+                    <td><input type="text" placeholder="Mennyiség" id="amount"></td>
+                    <td>
+                        <button id ="itemadd" class="btn btn-success" onclick="addItem()">+</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+
 @endsection
 @section('js')
     <script>
@@ -42,7 +46,7 @@
                     <td><input type="text" placeholder="Termék" id="product"></td>
                     <td><input type="text" placeholder="Mennyiség" id="amount"></td>
                     <td>
-                        <button class="btn btn-success" onclick="addItem()">Hozzáadás</button>
+                        <button class="btn btn-success" onclick="addItem()"><strong>+</strong></button>
                     </td>
                 </tr>
             `;
