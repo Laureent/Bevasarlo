@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /*
+        Regisztrációt feldolgozó function.
+        A $request kérésben kapja meg a szükséges adatokat.
+    */
     public function register(Request $request)
     {
         $fields = $request->validate([
@@ -33,7 +37,10 @@ class AuthController extends Controller
 
         return response($response, 201);
     }
-
+    /*
+        A bejelentkezést feldolgozó function.
+        A $request kérésben kapja meg a szükséges adatokat.
+    */
     public function login(Request $request)
     {
         $fields = $request->validate([
@@ -58,6 +65,10 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
+    /*
+    A kijelentkezést feldolgozó function.
+    A $request kérésben kapja meg a szükséges adatokat.
+    */
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();

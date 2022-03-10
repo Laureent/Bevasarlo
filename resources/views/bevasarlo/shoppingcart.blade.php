@@ -27,6 +27,9 @@
     <script>
         fetch('{{route("shoppinglist.show")}}').then(response => response.json()).then(datas => showList(datas));
 
+        /*
+            Megjeleníti a táblát a benne található elemekkel.
+         */
         function showList(datas) {
             document.querySelector('#list>tbody').innerHTML = "";
             let out ='';
@@ -52,12 +55,16 @@
             `;
             document.querySelector('#list>tbody').innerHTML = out;
         }
-
+        /*
+            A táblából törli az elemet.
+        */
         async function deleteItem(id) {
             await fetch('api/shoppinglist/'+id,{method:'DELETE'}).then(response => response.json());
             location.reload();
         }
-
+        /*
+             Hozzáad egy element a táblához.
+        */
         async function addItem(){
             const formData = new FormData();
             formData.append('name',document.getElementById('product').value);

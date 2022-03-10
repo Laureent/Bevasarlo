@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class ShoppingListController extends Controller
 {
+    /*
+        Visszaadja a tábla összes elemét.
+    */
     public function index()
     {
         return ShoppingList::all();
     }
 
+    /*
+        A $request-ben kapott elemet hozzáadja a táblához.
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -21,6 +27,9 @@ class ShoppingListController extends Controller
         return ShoppingList::create($request->all());
     }
 
+    /*
+        A $id alapján törli az element a táblából.
+    */
     public function destroy($id)
     {
         return ShoppingList::destroy($id);
